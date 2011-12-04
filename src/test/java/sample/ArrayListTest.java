@@ -1,39 +1,40 @@
 package sample;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class ArrayListTest {
 
-	@Test
-	public void testInstance() {
-		ArrayList<Object> list = new ArrayList<Object>();
+	private ArrayList<Object> sut;
 
-		assertThat(list, is(notNullValue()));
-		assertThat(0, is(list.size()));
+	@Before
+	public void setUp() {
+		sut = new ArrayList<Object>();
+	}
+
+	@Test
+	public void testInitialSize() {
+		assertThat(sut.size(), is(0));
 	}
 
 	@Test
 	public void testAdd() throws Exception {
-		ArrayList<Object> list = new ArrayList<Object>();
+		sut.add(new Object());
 
-		list.add(new Object());
-
-		assertThat(1, is(list.size()));
+		assertThat(sut.size(), is(1));
 	}
 
 	@Test
 	public void testIndexRemove() throws Exception {
-		ArrayList<Object> list = new ArrayList<Object>();
-		list.add(new Object());
+		sut.add(new Object());
 
-		list.remove(0);
+		sut.remove(0);
 
-		assertThat(0, is(list.size()));
+		assertThat(sut.size(), is(0));
 	}
 }
